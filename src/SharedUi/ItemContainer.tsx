@@ -4,9 +4,10 @@ import { ProductFrame } from "../App";
 
 interface Product {
   products: ProductFrame[];
+  addToCart: (product: ProductFrame) => void;
 }
 
-const ItemContainer = ({ products }: Product) => {
+const ItemContainer = ({ products, addToCart }: Product) => {
   return (
     <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
       {products.map((product) => (
@@ -16,6 +17,7 @@ const ItemContainer = ({ products }: Product) => {
             imageUrl={product.imageUrl}
             description={product.description}
             price={product.price}
+            addToCart={() => addToCart(product)}
           />
         </Box>
       ))}

@@ -15,6 +15,7 @@ interface ProductCardProps {
   imageUrl: string;
   description: string;
   price: string;
+  addToCart: () => void;
 }
 
 const ItemCard = ({
@@ -22,6 +23,7 @@ const ItemCard = ({
   description,
   price,
   imageUrl,
+  addToCart,
 }: ProductCardProps) => {
   return (
     <Card borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
@@ -44,8 +46,7 @@ const ItemCard = ({
             <HStack justify="space-between" w="100%">
               <Text fontWeight="bold">{price}</Text>
               <HStack spacing={2}>
-                <Button colorScheme="teal">Buy Now</Button>
-                <Button>Add to Cart</Button>
+                <Button onClick={addToCart}>Add to Cart</Button>
               </HStack>
             </HStack>
           </VStack>

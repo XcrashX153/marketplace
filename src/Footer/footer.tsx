@@ -3,7 +3,7 @@ import { Heading } from "@chakra-ui/react";
 const footer = () => {
   return (
     <>
-      <Heading fontSize={"medium"}>brought to you by oogabooga ltd</Heading>
+      <Heading fontSize={"medium"}>Coffee Collective ltd</Heading>
     </>
   );
 };
