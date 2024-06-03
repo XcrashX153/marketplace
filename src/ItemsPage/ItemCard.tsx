@@ -26,7 +26,7 @@ const ItemCard = ({
   addToCart,
 }: ProductCardProps) => {
   return (
-    <Card borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
+    <Card borderWidth="5px" borderRadius="lg" overflow="hidden" p={4}>
       <VStack spacing={4}>
         <Box width="100%" height="200px">
           <Image
@@ -35,6 +35,7 @@ const ItemCard = ({
             objectFit="cover"
             width="100%"
             height="100%"
+            borderRadius={5}
           />
         </Box>
         <CardBody>
