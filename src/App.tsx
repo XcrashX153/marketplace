@@ -16,7 +16,7 @@ import {
 import Header from "./SharedUi/Header";
 import Footer from "./Footer/footer";
 import ItemContainer from "./SharedUi/ItemContainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cart from "./Cart/Cart";
 
 const products: ProductFrame[] = [
@@ -153,7 +153,16 @@ export interface ProductFrame {
 
 function App() {
   const [cartItems, setCartItems] = useState<ProductFrame[]>([]);
+  const [searchResults, setSearchResults] = useState<ProductFrame[]>(products);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    setSearchResults(searchResults);
+  }, [searchResults]);
+
+  const handleSearch = (data: ProductFrame[]) => {
+    setSearchResults(data);
+  };
 
   const handleRemove = (id: number) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
@@ -183,12 +192,16 @@ function App() {
       minH="100vh"
     >
       <GridItem area="header">
-        <Header onOpenCart={onOpen} />
+        <Header
+          onDataUpdate={handleSearch}
+          onOpenCart={onOpen}
+          products={products}
+        />
       </GridItem>
       <GridItem area="main">
         <Flex justify="center" align="start" w="100%">
           <Box w="100%" maxW="1200px">
-            <ItemContainer products={products} addToCart={addToCart} />
+            <ItemContainer products={searchResults} addToCart={addToCart} />
           </Box>
         </Flex>
       </GridItem>
